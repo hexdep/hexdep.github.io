@@ -1,0 +1,27 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var svg = function (corCursor) {
+    return "data:image/svg+xml," + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">' +
+      '<rect width="16" height="16" fill="#000"/>' +
+      '<polyline points="2,4 6,8 2,12" fill="none" stroke="#8a8a8a" stroke-width="2"/>' +
+      '<rect x="8" y="3" width="6" height="10" fill="' + corCursor + '"/>' +
+      '</svg>');
+  };
+  var aceso = svg("#8a8a8a");
+  var apagado = svg("#2a2a2a");
+
+  document.querySelectorAll('link[rel~="icon"]').forEach(function (l) { l.remove(); });
+  var link = document.createElement("link");
+  link.rel = "icon";
+  link.type = "image/svg+xml";
+  link.href = aceso;
+  document.head.appendChild(link);
+
+  var ligado = true;
+  setInterval(function () {
+    ligado = !ligado;
+    link.href = ligado ? aceso : apagado;
+  }, 600);
+});
+</script>
