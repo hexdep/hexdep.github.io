@@ -1,0 +1,18 @@
+{{ $id := printf "ascii-%d" .Ordinal }}
+{{ $fps := .Get "fps" | default "4" }}
+<pre id="{{ $id }}" class="ascii-anim"></pre>
+<script>
+(function () {
+  const raw = {{ .Inner }};
+  const frames = raw.replace(/^\n+|\n+$/g, "").split(/\n---\n/);
+  const el = document.getElementById({{ $id }});
+  el.textContent = frames[0];
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (frames.length < 2 || reduce) return;
+  let i = 0;
+  setInterval(function () {
+    i = (i + 1) % frames.length;
+    el.textContent = frames[i];
+  }, 1000 / Number({{ $fps }}));
+})();
+</script>

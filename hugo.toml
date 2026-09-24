@@ -1,0 +1,17 @@
+baseURL = "https://hexdep.github.io/"
+locale = "pt-br"
+title = "hexdep"
+theme = "terminal"
+
+[pagination]
+  pagerSize = 5
+
+[params]
+  contentTypeName = "posts"
+  showMenuItems = 2
+  centerTheme = true
+  dateFormat = "2006-01-02 15:04"
+
+[params.logo]
+  logoText = "hexdep"
+  logoHomeLink = "/"
